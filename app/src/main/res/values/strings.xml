@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Coffe Shop</string>
     <string name="popular">Popular</string>
+    <string name="explorer">Explorer</string>
+    <string name="cart">Cart</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="my_order">My order</string>
+    <string name="profile">Profile</string>
 </resources>
