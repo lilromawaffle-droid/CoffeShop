@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.coffeshop.Domain.BannerModel
 import com.example.coffeshop.Domain.CategoryModel
+import com.example.coffeshop.Domain.ItemsModel
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -44,6 +45,26 @@ class MainRepository {
                 val list =mutableListOf<CategoryModel>()
                 for(childSnapShot in snapshot.children){
                     val item=childSnapShot.getValue(CategoryModel::class.java)
+                    item?.let{list.add(it)}
+                }
+                listData.value = list
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+        return listData
+    }
+    fun loadPopular(): LiveData<MutableList<ItemsModel>>{
+        val listData= MutableLiveData<MutableList<ItemsModel>>()
+        val ref= firebaseDatabase.getReference("Popular")
+        ref.addValueEventListener(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val list =mutableListOf<ItemsModel>()
+                for(childSnapShot in snapshot.children){
+                    val item=childSnapShot.getValue(ItemsModel::class.java)
                     item?.let{list.add(it)}
                 }
                 listData.value = list
