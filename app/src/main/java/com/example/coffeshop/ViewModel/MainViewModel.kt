@@ -6,6 +6,7 @@ import com.example.coffeshop.Domain.BannerModel
 import com.example.coffeshop.Domain.CategoryModel
 import com.example.coffeshop.Domain.ItemsModel
 import com.example.coffeshop.Repository.MainRepository
+import java.sql.RowId
 
 class MainViewModel: ViewModel() {
     private val repository = MainRepository()
@@ -20,6 +21,9 @@ class MainViewModel: ViewModel() {
 
     fun loadPopular(): LiveData <MutableList<ItemsModel>>{
         return repository.loadPopular()
+    }
+    fun loadItems(categoryId: String): LiveData <MutableList<ItemsModel>>{
+        return repository.loadItemCategory(categoryId)
     }
 
 }
