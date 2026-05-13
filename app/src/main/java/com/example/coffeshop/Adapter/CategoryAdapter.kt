@@ -42,7 +42,7 @@ class CategoryAdapter (val items: MutableList<CategoryModel>): RecyclerView.Adap
             Handler(Looper.getMainLooper()).postDelayed({
                 val intent = Intent(context, ItemsListActivity::class.java).apply {
                     putExtra("id",item.id.toString())
-                    putExtra("titlw",item.title)
+                    putExtra("title",item.title)
                 }
                 ContextCompat.startActivity(context,intent,null)
             },500)
